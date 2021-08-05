@@ -31,6 +31,8 @@ public class Pet {
     @Column(name = "age")
     protected Integer age;
 
+    public String petType;
+
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "user_id", updatable = false)
     private User user;

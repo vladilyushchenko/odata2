@@ -9,6 +9,7 @@ import java.util.Map;
 
 public interface ODataService<T extends EntityEdm> {
 
+    // TODO: delete parameter T in this function
     <T extends EntityEdm> Object getRelatedData(Object sourceData, String targetEntityName) throws ODataNotFoundException, ODataNotImplementedException;
 
     T getDataObject();

@@ -1,6 +1,8 @@
 package com.leverx.odata.service;
 
-import com.leverx.odata.entity.EdmMapper;
+import com.leverx.odata.entity.jpa.Cat;
+import com.leverx.odata.entity.jpa.Dog;
+import com.leverx.odata.mapper.EdmMapper;
 import com.leverx.odata.entity.edm.PetEdm;
 import com.leverx.odata.entity.edm.UserEdm;
 import com.leverx.odata.entity.jpa.Pet;
@@ -50,7 +52,11 @@ public class PetOdataService implements ODataService<PetEdm> {
     @Transactional
     public PetEdm save(PetEdm sourceData) {
         Pet pet = EdmMapper.fromPetEdm(sourceData);
-        PetRepositoryImpl.getInstance().save(pet);
+        if (StringConstants.ET_DOG_NAME.equals(sourceData.getPetType())) {
+            PetRepositoryImpl.getInstance().save((Dog) pet);
+        } else {
+            PetRepositoryImpl.getInstance().save((Cat) pet);
+        }
         sourceData.setId(pet.getId());
         return EdmMapper.toPetEdm(pet);
     }
@@ -69,5 +75,4 @@ public class PetOdataService implements ODataService<PetEdm> {
         Pet pet = PetRepositoryImpl.getInstance().findById(id);
         PetRepositoryImpl.getInstance().delete(pet);
     }
-
 }

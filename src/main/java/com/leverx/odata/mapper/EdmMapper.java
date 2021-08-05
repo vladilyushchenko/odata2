@@ -1,4 +1,4 @@
-package com.leverx.odata.entity;
+package com.leverx.odata.mapper;
 
 
 import com.leverx.odata.entity.edm.CatEdm;
@@ -9,12 +9,10 @@ import com.leverx.odata.entity.jpa.Cat;
 import com.leverx.odata.entity.jpa.Dog;
 import com.leverx.odata.entity.jpa.Pet;
 import com.leverx.odata.entity.jpa.User;
-import com.leverx.odata.util.StringConstants;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-import static com.leverx.odata.util.StringConstants.ET_CAT_NAME;
 import static java.util.stream.Collectors.toList;
 import static lombok.AccessLevel.PRIVATE;
 
@@ -53,6 +51,7 @@ public final class EdmMapper {
                 .id(pet.getId())
                 .name(pet.getName())
                 .age(pet.getAge())
+                .petType(pet.getPetType())
                 .build();
     }
 
@@ -64,6 +63,7 @@ public final class EdmMapper {
                 .id(petEdm.getId())
                 .name(petEdm.getName())
                 .age(petEdm.getAge())
+                .petType(petEdm.getPetType())
                 .build();
     }
 
@@ -76,6 +76,7 @@ public final class EdmMapper {
                 .name(cat.getName())
                 .age(cat.getAge())
                 .userEdm(toUserEdm(cat.getUser()))
+                .petType(cat.getPetType())
                 .build();
     }
 
@@ -88,6 +89,7 @@ public final class EdmMapper {
                 .name(catEdm.getName())
                 .age(catEdm.getAge())
                 .user(fromUserEdm(catEdm.getUserEdm()))
+                .petType(catEdm.getPetType())
                 .build();
     }
 
@@ -100,6 +102,7 @@ public final class EdmMapper {
                 .name(dog.getName())
                 .age(dog.getAge())
                 .userEdm(toUserEdm(dog.getUser()))
+                .petType(dog.getPetType())
                 .build();
     }
 
@@ -107,11 +110,12 @@ public final class EdmMapper {
         if (dogEdm == null) {
             return null;
         }
-        return (Dog) Pet.builder()
+        return Dog.builder()
                 .id(dogEdm.getId())
                 .name(dogEdm.getName())
                 .age(dogEdm.getAge())
                 .user(fromUserEdm(dogEdm.getUserEdm()))
+                .petType(dogEdm.getPetType())
                 .build();
     }
 
@@ -132,11 +136,5 @@ public final class EdmMapper {
                 .map(EdmMapper::fromPetEdm)
                 .collect(toList());
     }
-
-    private String getPetType(Pet pet) {
-        // if ()
-        return null;
-    }
-
 }
 

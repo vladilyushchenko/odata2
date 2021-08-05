@@ -13,6 +13,8 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
+import static com.leverx.odata.util.StringConstants.ET_DOG_NAME;
+
 public class PetRepositoryImpl implements PetRepository {
 
     private static final PetRepository instance = new PetRepositoryImpl();

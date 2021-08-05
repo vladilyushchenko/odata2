@@ -1,6 +1,6 @@
 package com.leverx.odata.service;
 
-import com.leverx.odata.entity.EdmMapper;
+import com.leverx.odata.mapper.EdmMapper;
 import com.leverx.odata.entity.edm.UserEdm;
 import com.leverx.odata.entity.jpa.User;
 import com.leverx.odata.repository.impl.PetRepositoryImpl;

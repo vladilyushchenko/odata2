@@ -6,13 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.apache.olingo.odata2.api.annotation.edm.*;
 
+import static com.leverx.odata.util.StringConstants.*;
 import static org.apache.olingo.odata2.api.annotation.edm.EdmNavigationProperty.Multiplicity.ONE;
 
 @Data
 @SuperBuilder
 @NoArgsConstructor
-@EdmEntitySet(name = StringConstants.ES_PETS_NAME, container = StringConstants.CONTAINER_NAME)
-@EdmEntityType(name = StringConstants.ET_PET_NAME, namespace = StringConstants.NAMESPACE)
+@EdmEntitySet(name = ES_PETS_NAME, container = CONTAINER_NAME)
+@EdmEntityType(name = ET_PET_NAME, namespace = NAMESPACE)
 public class PetEdm implements EntityEdm {
 
     @EdmKey
@@ -30,9 +31,9 @@ public class PetEdm implements EntityEdm {
 
     @EdmNavigationProperty(toMultiplicity = ONE,
             toType = UserEdm.class,
-            association = StringConstants.USER_PET_ASSOCIATION,
-            toRole = StringConstants.ROLE_USER,
-            name = StringConstants.ET_USER_NAME
+            association = USER_PET_ASSOCIATION,
+            toRole = ROLE_USER,
+            name = ET_USER_NAME
     )
     private UserEdm userEdm;
 }

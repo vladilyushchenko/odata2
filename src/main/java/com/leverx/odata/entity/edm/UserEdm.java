@@ -1,6 +1,5 @@
 package com.leverx.odata.entity.edm;
 
-import com.leverx.odata.util.StringConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -8,6 +7,7 @@ import org.apache.olingo.odata2.api.annotation.edm.*;
 
 import java.util.List;
 
+import static com.leverx.odata.util.StringConstants.*;
 import static org.apache.olingo.odata2.api.annotation.edm.EdmNavigationProperty.Multiplicity.MANY;
 import static org.apache.olingo.odata2.api.annotation.edm.EdmType.INT64;
 import static org.apache.olingo.odata2.api.annotation.edm.EdmType.STRING;
@@ -15,8 +15,8 @@ import static org.apache.olingo.odata2.api.annotation.edm.EdmType.STRING;
 @Data
 @SuperBuilder
 @NoArgsConstructor
-@EdmEntitySet(name = StringConstants.ES_USERS_NAME, container = StringConstants.CONTAINER_NAME)
-@EdmEntityType(name = StringConstants.ET_USER_NAME, namespace = StringConstants.NAMESPACE)
+@EdmEntitySet(name = ES_USERS_NAME, container = CONTAINER_NAME)
+@EdmEntityType(name = ET_USER_NAME, namespace = NAMESPACE)
 public class UserEdm implements EntityEdm {
 
     @EdmKey
@@ -31,8 +31,8 @@ public class UserEdm implements EntityEdm {
 
     @EdmNavigationProperty(toMultiplicity = MANY,
             toType = PetEdm.class,
-            association = StringConstants.USER_PET_ASSOCIATION,
-            toRole = StringConstants.ROLE_PET,
-            name = StringConstants.ES_PETS_NAME)
+            association = USER_PET_ASSOCIATION,
+            toRole = ROLE_PET,
+            name = ES_PETS_NAME)
     private List<PetEdm> petsEdm;
 }
