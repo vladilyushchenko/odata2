@@ -30,7 +30,7 @@ public class ODataServiceProvider {
         oDataServices.put(StringConstants.ES_DOGS_NAME, dogODataService);
     }
 
-    public ODataService getODataEntityService(String entitySetName) throws ODataNotFoundException {
+    public ODataService getService(String entitySetName) throws ODataNotFoundException {
         return ofNullable(oDataServices.get(entitySetName))
                 .orElseThrow(() -> new ODataNotFoundException(ENTITY));
     }

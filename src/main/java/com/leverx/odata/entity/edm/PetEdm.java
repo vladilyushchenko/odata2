@@ -25,6 +25,9 @@ public class PetEdm implements EntityEdm {
     @EdmProperty
     protected Integer age;
 
+    @EdmProperty
+    protected String petType;
+
     @EdmNavigationProperty(toMultiplicity = ONE,
             toType = UserEdm.class,
             association = StringConstants.USER_PET_ASSOCIATION,

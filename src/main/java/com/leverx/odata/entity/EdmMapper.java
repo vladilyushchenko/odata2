@@ -9,10 +9,12 @@ import com.leverx.odata.entity.jpa.Cat;
 import com.leverx.odata.entity.jpa.Dog;
 import com.leverx.odata.entity.jpa.Pet;
 import com.leverx.odata.entity.jpa.User;
+import com.leverx.odata.util.StringConstants;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import static com.leverx.odata.util.StringConstants.ET_CAT_NAME;
 import static java.util.stream.Collectors.toList;
 import static lombok.AccessLevel.PRIVATE;
 
@@ -129,6 +131,11 @@ public final class EdmMapper {
         return petEdms.stream()
                 .map(EdmMapper::fromPetEdm)
                 .collect(toList());
+    }
+
+    private String getPetType(Pet pet) {
+        // if ()
+        return null;
     }
 
 }

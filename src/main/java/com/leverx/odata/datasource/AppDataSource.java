@@ -24,7 +24,7 @@ public class AppDataSource implements DataSource {
     public List<?> readData(EdmEntitySet entitySet) throws ODataNotFoundException, EdmException {
         String entitySetName = entitySet.getName();
         return oDataServiceProvider
-                .getODataEntityService(entitySetName)
+                .getService(entitySetName)
                 .findAll();
     }
 
@@ -32,7 +32,7 @@ public class AppDataSource implements DataSource {
     public Object readData(EdmEntitySet entitySet, Map<String, Object> keys) throws ODataNotFoundException, EdmException {
         String entitySetName = entitySet.getName();
         Long firstLayerEntityId = (Long) keys.get("Id");
-        return oDataServiceProvider.getODataEntityService(entitySetName)
+        return oDataServiceProvider.getService(entitySetName)
                 .findById(firstLayerEntityId);
     }
 
@@ -45,7 +45,7 @@ public class AppDataSource implements DataSource {
     public Object readRelatedData(EdmEntitySet sourceEntitySet, Object sourceData, EdmEntitySet targetEntitySet, Map<String, Object> targetKeys) throws EdmException, ODataNotImplementedException, ODataNotFoundException {
         String sourceEntityName = sourceEntitySet.getName();
         String targetEntityName = targetEntitySet.getName();
-        return oDataServiceProvider.getODataEntityService(sourceEntityName)
+        return oDataServiceProvider.getService(sourceEntityName)
                 .getRelatedData(sourceData, targetEntityName);
     }
 
@@ -58,7 +58,7 @@ public class AppDataSource implements DataSource {
     @Override
     public Object newDataObject(EdmEntitySet entitySet) {
         String entitySetName = entitySet.getName();
-        return oDataServiceProvider.getODataEntityService(entitySetName)
+        return oDataServiceProvider.getService(entitySetName)
                 .getDataObject();
     }
 
@@ -73,7 +73,7 @@ public class AppDataSource implements DataSource {
             throws EdmException, ODataNotFoundException {
         String entitySetName = entitySet.getName();
         Long id = (Long) keys.get("Id");
-        oDataServiceProvider.getODataEntityService(entitySetName)
+        oDataServiceProvider.getService(entitySetName)
                 .delete(id);
     }
 
@@ -81,7 +81,7 @@ public class AppDataSource implements DataSource {
     @Override
     public void createData(EdmEntitySet entitySet, Object data) {
         String entitySetName = entitySet.getName();
-        oDataServiceProvider.getODataEntityService(entitySetName)
+        oDataServiceProvider.getService(entitySetName)
                 .save((EntityEdm) data);
     }
 
@@ -95,7 +95,7 @@ public class AppDataSource implements DataSource {
     @Override
     public void writeRelation(EdmEntitySet sourceEntitySet, Object sourceData, EdmEntitySet targetEntitySet,
                               Map<String, Object> targetKeys) {
-        oDataServiceProvider.getODataEntityService(targetEntitySet.getName())
+        oDataServiceProvider.getService(targetEntitySet.getName())
                 .updateTargetKeysBySourceData(targetKeys, sourceData);
     }
 }
